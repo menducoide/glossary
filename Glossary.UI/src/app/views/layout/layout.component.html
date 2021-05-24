@@ -1,0 +1,29 @@
+<mat-toolbar>
+  <button mat-icon-button (click)="drawer.toggle()" aria-label="">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span class="ml-4">{{ title }}</span>
+  <span class="toolbar-spacer"></span>
+	<span flex></span>  
+</mat-toolbar>
+<mat-drawer-container class="layout-container" [hasBackdrop]="true">
+  <mat-drawer class="layout-sidenav" #drawer [mode]="'side'">
+    <mat-list>
+      <mat-list-item
+        *ngFor="let menuItem of menuItems"
+        [routerLink]="[menuItem.url]"
+        [routerLinkActive]="['text-accent']"
+        (click)="drawer.toggle()"
+        class="cursor-pointer"
+      >
+      <div class="menu-item" mat-line>{{ menuItem.label }}</div>
+      <mat-icon  >{{menuItem.icon}}</mat-icon>
+      </mat-list-item>
+    </mat-list>
+  </mat-drawer>
+  <mat-drawer-content class="layout-sidenav-content">
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
