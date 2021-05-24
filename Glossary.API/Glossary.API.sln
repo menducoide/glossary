@@ -3,9 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glossary.API", "Glossary.API\Glossary.API.csproj", "{77CEE917-6D2C-40F0-9695-6F1593F42B1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Glossary.API", "Glossary.API\Glossary.API.csproj", "{77CEE917-6D2C-40F0-9695-6F1593F42B1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glossary.DataTransferObjects", "Glossary.DataTransferObjects\Glossary.DataTransferObjects.csproj", "{B57A4D2C-FF61-4524-93C7-41EC2812B0E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Glossary.DataTransferObjects", "Glossary.DataTransferObjects\Glossary.DataTransferObjects.csproj", "{B57A4D2C-FF61-4524-93C7-41EC2812B0E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glossary.Domain", "Glossary.Domain\Glossary.Domain.csproj", "{B86282B1-2188-431F-960B-94107C578C09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glossary.Persistence", "Glossary.Persistence\Glossary.Persistence.csproj", "{1EF3F5B0-15ED-4EEB-A1A8-CAE47D59C516}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glossary.Test", "Glossary.Test\Glossary.Test.csproj", "{274D22EA-E6CA-49FF-9640-35521BCB1636}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +27,18 @@ Global
 		{B57A4D2C-FF61-4524-93C7-41EC2812B0E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B57A4D2C-FF61-4524-93C7-41EC2812B0E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B57A4D2C-FF61-4524-93C7-41EC2812B0E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B86282B1-2188-431F-960B-94107C578C09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B86282B1-2188-431F-960B-94107C578C09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B86282B1-2188-431F-960B-94107C578C09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B86282B1-2188-431F-960B-94107C578C09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EF3F5B0-15ED-4EEB-A1A8-CAE47D59C516}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EF3F5B0-15ED-4EEB-A1A8-CAE47D59C516}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EF3F5B0-15ED-4EEB-A1A8-CAE47D59C516}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EF3F5B0-15ED-4EEB-A1A8-CAE47D59C516}.Release|Any CPU.Build.0 = Release|Any CPU
+		{274D22EA-E6CA-49FF-9640-35521BCB1636}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{274D22EA-E6CA-49FF-9640-35521BCB1636}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{274D22EA-E6CA-49FF-9640-35521BCB1636}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{274D22EA-E6CA-49FF-9640-35521BCB1636}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
