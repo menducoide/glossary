@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Glossary.Domain.IServices;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -12,16 +13,18 @@ namespace Glossary.API.Controllers
     public class TermsController : ControllerBase
     {
         private readonly ILogger<TermsController> _logger;
+        private readonly ITermService _termService;
 
-        public TermsController(ILogger<TermsController> logger)
+        public TermsController(ILogger<TermsController> logger, ITermService termService)
         {
             _logger = logger;
+            _termService = termService;
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> List()
         {
-            return Ok();
+            return Ok(await _termService.List());
         }
     }
 }

@@ -9,6 +9,7 @@ import { TermsListComponent } from './views/terms/terms-list/terms-list.componen
 import { TermFormComponent } from './views/terms/term-form/term-form.component';
  
 import { SharedModule } from "./shared/shared.module";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -17,13 +18,14 @@ import { SharedModule } from "./shared/shared.module";
     LayoutComponent,
     TermsListComponent,
     TermFormComponent,
-
+ 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

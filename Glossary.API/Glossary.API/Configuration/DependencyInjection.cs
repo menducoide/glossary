@@ -14,7 +14,7 @@ namespace Glossary.API.Configuration
     {
         public static void AddDI(this IServiceCollection services)
         {
-            services.AddSingleton(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped<ITermService, TermService>();           
         }
     }
