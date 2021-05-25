@@ -12,6 +12,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using Glossary.API.Configuration;
+using AutoMapper;
+using Glossary.Domain.Mapping;
 
 namespace Glossary.API
 {
@@ -28,7 +30,17 @@ namespace Glossary.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowAnyOrigin());
+            });
             services.AddDbContext<GlossaryDBContext>(options => options.UseInMemoryDatabase(databaseName: "Glossary"));
+            services.AddAutoMapper(typeof(EntityToDto));
+            services.AddAutoMapper(typeof(DtoToEntity));
             services.AddDI();
         }
 
@@ -43,7 +55,7 @@ namespace Glossary.API
             app.UseRouting();
 
             app.UseAuthorization();
-
+            app.UseCors("CorsPolicy");
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
