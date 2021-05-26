@@ -18,7 +18,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     LayoutComponent,
     TermsListComponent,
     TermFormComponent,
- 
   ],
   imports: [
     BrowserModule,

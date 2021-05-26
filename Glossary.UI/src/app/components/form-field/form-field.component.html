@@ -1,0 +1,16 @@
+<div class="row pb-3">
+  <div class="col">
+    <mat-form-field appearance="outline" [formGroup]="formGroup" class="w-100">
+      <mat-label>{{ label }}</mat-label>
+      <input
+        matInput
+        placeholder="{{ placeholder }}"        
+        formControlName="{{formControlName}}"
+        required="{{ required ? true : false }}"
+        (keyup)="onChange($event)"
+      />
+      <mat-hint *ngIf="hint">{{ hint }}</mat-hint>
+      <mat-error *ngIf="invalidMessage">{{ invalidMessage }}</mat-error>
+    </mat-form-field>
+  </div>
+</div>

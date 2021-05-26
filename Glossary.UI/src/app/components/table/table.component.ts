@@ -6,9 +6,11 @@ import {
   OnInit,
   Output,
   EventEmitter,
+  OnChanges,
+  SimpleChanges,
 } from "@angular/core";
 import { MatSort } from "@angular/material/sort";
-import { MatTableDataSource } from "@angular/material/table";
+import { MatTable, MatTableDataSource } from "@angular/material/table";
 import { ActionColumn } from "src/app/core/models/common/action-column ";
 import { SortableColumn } from "src/app/core/models/common/sortable-column";
 
@@ -17,7 +19,7 @@ import { SortableColumn } from "src/app/core/models/common/sortable-column";
   templateUrl: "./table.component.html",
   styleUrls: ["./table.component.scss"],
 })
-export class TableComponent implements AfterViewInit, OnInit {
+export class TableComponent implements AfterViewInit, OnInit, OnChanges {
   @Input() data: any[];
   @Input() sortableColumns: SortableColumn[];
   @Input() actionColumns: ActionColumn[] = [];
@@ -26,21 +28,22 @@ export class TableComponent implements AfterViewInit, OnInit {
   dataSource: MatTableDataSource<any>;
   menuIcon: string = "more_vert";
   constructor() {}
+  ngOnChanges(changes: SimpleChanges): void {
+    this.ngOnInit();
+  }
   ngOnInit(): void {
-     this.dataSource = new MatTableDataSource(this.data);
-
+    this.dataSource = new MatTableDataSource(this.data);
     this.displayedColumns = this.sortableColumns.map((s) => s.colDef);
-    if(this.actionColumns){
-      this.displayedColumns.push("action")
+    if (this.actionColumns) {
+      this.displayedColumns.push("action");
     }
   }
 
   @ViewChild(MatSort) sort: MatSort;
-
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
   }
   onActionClick(actionDef: string, element) {
-     this.handleOnActionClick.emit({ actionDef, element });
+    this.handleOnActionClick.emit({ actionDef, element });
   }
 }
