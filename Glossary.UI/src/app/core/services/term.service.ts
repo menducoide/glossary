@@ -19,9 +19,12 @@ export class TermService extends BaseService {
     return this.httpClient.get<Term>(`${this.APIEndpoint}terms/${id}`);
   }
   public createTerm(term: any): Observable<Term> {
-     return this.httpClient.post<Term>(`${this.APIEndpoint}terms`,term);
+    return this.httpClient.post<Term>(`${this.APIEndpoint}terms`, term);
   }
-  public updateTerm(id :number, term: any): Observable<any> {
-    return this.httpClient.put(`${this.APIEndpoint}terms/${id}`,term);
+  public updateTerm(id: number, term: any): Observable<any> {
+    return this.httpClient.put(`${this.APIEndpoint}terms/${id}`, term);
+  }
+  public deleteTerm(id: number): Observable<any> {
+    return this.httpClient.delete(`${this.APIEndpoint}terms/${id}`);
   }
 }

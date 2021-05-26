@@ -11,6 +11,7 @@ import { ActionColumn } from "src/app/core/models/common/action-column ";
 import { SortableColumn } from "src/app/core/models/common/sortable-column";
 import { Term } from "src/app/core/models/term";
 import { TermService } from "src/app/core/services/term.service";
+import { TermDeleteComponent } from "../term-delete/term-delete.component";
 import { TermFormComponent } from "../term-form/term-form.component";
 
 @Component({
@@ -20,6 +21,7 @@ import { TermFormComponent } from "../term-form/term-form.component";
 })
 export class TermsListComponent implements OnInit, OnDestroy {
   terms: Term[];
+  termsFiltered: Term[];
   termsColumns: SortableColumn[];
   actionColumns: ActionColumn[];
   constructor(
@@ -27,9 +29,7 @@ export class TermsListComponent implements OnInit, OnDestroy {
     private termService: TermService,
     private cd: ChangeDetectorRef
   ) {}
-  ngOnDestroy(): void {
-    
-  }
+  ngOnDestroy(): void {}
   async ngOnInit() {
     await this.populateTerms();
   }
@@ -42,15 +42,18 @@ export class TermsListComponent implements OnInit, OnDestroy {
       { label: "Edit", actionDef: "edit" },
       { label: "Delete", actionDef: "delete" },
     ];
-    this.terms = await this.termService.listTerms().toPromise();
+    this.terms = this.termsFiltered = await this.termService
+      .listTerms()
+      .toPromise();
   }
   handleOnActionClick(event) {
-     switch (event.actionDef) {
+    switch (event.actionDef) {
       case "edit": {
         this.onEdit(event.element.termId);
         break;
       }
       case "delete": {
+        this.openDeleteTermDialog(event.element);
         break;
       }
       default:
@@ -64,6 +67,15 @@ export class TermsListComponent implements OnInit, OnDestroy {
     this.openTermDialog(termId);
   }
 
+  onSearch(e) {
+    const { value } = e.target;
+    if (!value) {
+      this.termsFiltered = this.terms;
+    }else{
+      this.termsFiltered = this.terms.filter(t=>t.name.toLowerCase().includes(value.toLowerCase())
+       || t.definition.toLowerCase().includes(value.toLowerCase()))
+    }
+  }
   openTermDialog = (termId: number | null = null): void => {
     const dialogRef = this.dialog.open(TermFormComponent, {
       width: "500px",
@@ -73,9 +85,24 @@ export class TermsListComponent implements OnInit, OnDestroy {
       dialogRef.componentInstance.termId = termId;
     }
     dialogRef.afterClosed().subscribe(async (result) => {
-      if (result == true) {       
+      if (result == true) {
         await this.populateTerms();
       }
     });
+  };
+
+  openDeleteTermDialog = (term: Term): void => {
+    if (term) {
+      const dialogRef = this.dialog.open(TermDeleteComponent, {
+        width: "500px",
+      });
+      dialogRef.componentInstance.termId = term.termId;
+      dialogRef.componentInstance.name = term.name;
+      dialogRef.afterClosed().subscribe(async (result) => {
+        if (result == true) {
+          await this.populateTerms();
+        }
+      });
+    }
   };
 }

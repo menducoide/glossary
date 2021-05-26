@@ -8,6 +8,7 @@
         formControlName="{{formControlName}}"
         required="{{ required ? true : false }}"
         (keyup)="onChange($event)"
+        (focusout)="onChange($event)"
       />
       <mat-hint *ngIf="hint">{{ hint }}</mat-hint>
       <mat-error *ngIf="invalidMessage">{{ invalidMessage }}</mat-error>
