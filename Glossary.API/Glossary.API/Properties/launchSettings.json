@@ -12,7 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "terms",
+      "launchUrl": "api/v1/terms",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -20,7 +20,7 @@
     "Glossary.API": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "terms",
+      "launchUrl": "api/v1/terms",
       "applicationUrl": "http://localhost:64738",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

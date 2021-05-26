@@ -28,24 +28,30 @@ namespace Glossary.Domain.Services
             var entities = await _repository.ListBy(s => s.Active == true);
             if (!entities.Any())
             {
-                Initialize();
+                await Initialize();
                 entities = await _repository.ListBy(s => s.Active == true);
             }
-            return _mapper.Map<IEnumerable<TermDto>>(entities);            
+            return _mapper.Map<IEnumerable<TermDto>>(entities);
         }
-        public Task<TermDto> GetBy(int id)
+        public async Task<IEnumerable<TermDto>> ListBy(string name, int id = 0)
         {
-            throw new NotImplementedException();
+            name = name.ToLower();
+            var entities = await _repository.ListBy(s => s.Active == true && s.Name.ToLower() == name && s.TermId != id);
+            return _mapper.Map<IEnumerable<TermDto>>(entities);
+        }
+        public async Task<TermDto> GetBy(int id)
+        {
+            var entity = await _repository.GetBy(s => s.Active == true && s.TermId == id);
+            return _mapper.Map<TermDto>(entity);
         }
 
-        public Task<TermDto> GetBy(string name)
-        {
-            throw new NotImplementedException();
-        }
 
-        public Task<TermDto> Insert(TermDto dto)
+        public async Task<TermDto> Insert(TermDto dto)
         {
-            throw new NotImplementedException();
+            Term entity = _mapper.Map<Term>(dto);
+            entity = await _repository.Insert(entity);
+            dto.TermId = entity.TermId;
+            return dto;
         }
 
 
@@ -54,9 +60,11 @@ namespace Glossary.Domain.Services
             throw new NotImplementedException();
         }
 
-        public Task Update(int id, TermDto dto)
+        public async Task Update(int id, TermDto dto)
         {
-            throw new NotImplementedException();
+            Term entity = await _repository.GetById(id);
+            _mapper.Map(dto,entity);
+            await _repository.Update(entity);
         }
         private async Task Initialize()
         {

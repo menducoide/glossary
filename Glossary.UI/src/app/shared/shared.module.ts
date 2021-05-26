@@ -7,10 +7,14 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
  import { MaterialModule } from "./material.module";
 import { RouterModule } from "@angular/router";
 import { TableComponent } from '../components/table/table.component';
+import { FormFieldComponent } from '../components/form-field/form-field.component';
+import { TermValidator } from '../core/validators/term.validator';
 
+ 
 @NgModule({
   declarations: [ 
-    TableComponent
+    TableComponent,
+    FormFieldComponent
   ],
   imports: [
     CommonModule,
@@ -29,8 +33,9 @@ import { TableComponent } from '../components/table/table.component';
     FormsModule,
     MaterialModule,  
     HttpClientModule,
-    TableComponent
+    TableComponent,
+    FormFieldComponent
     ],
-  providers: [],
+  providers: [TermValidator],
   })
 export class SharedModule {}
