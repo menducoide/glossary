@@ -25,7 +25,7 @@ namespace Glossary.Domain.Services
 
         public async Task<IEnumerable<TermDto>> List()
         {
-            var entities = await _repository.ListBy(s => s.Active == true);
+            var entities = await _repository.ListBy(s => s.Active == true, o=> o.Name);
             if (!entities.Any())
             {
                 await Initialize();
@@ -55,15 +55,23 @@ namespace Glossary.Domain.Services
         }
 
 
-        public Task Remove(int id)
+        public async Task Remove(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await _repository.Remove(id);
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
         }
 
         public async Task Update(int id, TermDto dto)
         {
             Term entity = await _repository.GetById(id);
-            _mapper.Map(dto,entity);
+            _mapper.Map(dto, entity);
             await _repository.Update(entity);
         }
         private async Task Initialize()

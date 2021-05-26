@@ -10,7 +10,7 @@ namespace Glossary.Persistence.IRepositories
     {
         Task<IEnumerable<T>> ListBy(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties);
         Task<IEnumerable<T>> ListBy();
-        Task<IEnumerable<T>> ListBy(Expression<Func<T, bool>> predicate);
+        Task<IEnumerable<T>> ListBy<TKey>(Expression<Func<T, bool>> predicate, Expression<Func<T, TKey>> orderingOption = null, bool descending = false);
         Task<T> GetBy(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties);
         Task<T> GetById(object id);
         Task<T> Insert(T entity);

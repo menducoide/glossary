@@ -71,5 +71,18 @@ namespace Glossary.API.Controllers
                 return StatusCode(500);
             }
         }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {               
+                await _termService.Remove(id);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return StatusCode(500);
+            }
+        }
     }
 }

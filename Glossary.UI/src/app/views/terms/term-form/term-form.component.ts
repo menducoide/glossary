@@ -57,7 +57,7 @@ export class TermFormComponent implements OnInit {
 
   async onSave() {
     if (this.formGroup.valid == true) {
-       if (this.termId) {
+      if (this.termId) {
         await this.termService
           .updateTerm(this.termId, this.formGroup.value)
           .toPromise();

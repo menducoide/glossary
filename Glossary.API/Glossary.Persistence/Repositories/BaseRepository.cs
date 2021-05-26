@@ -41,7 +41,7 @@ namespace Glossary.Persistence.Repositories
                 throw e;
             }
         }
-        public virtual async Task<IEnumerable<T>> ListBy(Expression<Func<T, bool>> predicate)
+        public virtual async Task<IEnumerable<T>> ListBy<TKey>(Expression<Func<T, bool>> predicate, Expression<Func<T, TKey>> orderingOption = null, bool descending = false)
         {
             try
             {
@@ -49,6 +49,13 @@ namespace Glossary.Persistence.Repositories
                 if (predicate != null)
                 {
                     query = query.Where(predicate).AsQueryable();
+                }
+                if (orderingOption != null)
+                {
+                    if (descending)
+                        query = query.OrderByDescending(orderingOption).AsQueryable();
+                    else
+                        query = query.OrderBy(orderingOption).AsQueryable();
                 }
                 return await query.ToListAsync();
 

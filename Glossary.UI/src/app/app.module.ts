@@ -10,6 +10,7 @@ import { TermFormComponent } from './views/terms/term-form/term-form.component';
  
 import { SharedModule } from "./shared/shared.module";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TermDeleteComponent } from './views/terms/term-delete/term-delete.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     LayoutComponent,
     TermsListComponent,
     TermFormComponent,
+    TermDeleteComponent,
   ],
   imports: [
     BrowserModule,
