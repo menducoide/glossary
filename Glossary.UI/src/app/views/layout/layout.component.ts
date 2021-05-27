@@ -13,7 +13,7 @@ export class LayoutComponent implements OnInit {
    ngOnInit(): void {
     this.title = "Glossary";
     this.menuItems = [
-      { url: "terms", label: "Terms", icon: 'home' },
+      { url: "terms", label: "Terms", icon: 'spellcheck' },
      ];
  
   }

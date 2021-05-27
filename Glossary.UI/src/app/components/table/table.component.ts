@@ -33,7 +33,11 @@ export class TableComponent implements AfterViewInit, OnInit, OnChanges {
   }
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.data);
-    this.displayedColumns = this.sortableColumns.map((s) => s.colDef);
+    if (this.sortableColumns) {
+      this.displayedColumns = this.sortableColumns.map((s) => s.colDef);
+    }else{
+      this.displayedColumns  = new Array<string>();
+    }
     if (this.actionColumns) {
       this.displayedColumns.push("action");
     }
