@@ -79,8 +79,7 @@ export class TermsListComponent implements OnInit, OnDestroy {
   openTermDialog = (termId: number | null = null): void => {
     const dialogRef = this.dialog.open(TermFormComponent, {
       width: "500px",
-      height: "500px",
-    });
+     });
     if (termId) {
       dialogRef.componentInstance.termId = termId;
     }

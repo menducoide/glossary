@@ -1,16 +1,25 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { AppRoutingModule } from "src/app/app-routing.module";
+import { SharedModule } from "../../shared/shared.module";
 
-import { TableComponent } from './table.component';
+import { TableComponent } from "./table.component";
 
-describe('TableComponent', () => {
+describe("TableComponent", () => {
   let component: TableComponent;
   let fixture: ComponentFixture<TableComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TableComponent ]
-    })
-    .compileComponents();
+      imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        SharedModule,
+      ],
+      declarations: [TableComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +28,7 @@ describe('TableComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

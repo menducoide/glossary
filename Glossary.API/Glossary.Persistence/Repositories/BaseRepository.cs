@@ -1,4 +1,5 @@
-﻿using Glossary.Persistence.Context;
+﻿using Glossary.Common.Exceptions;
+using Glossary.Persistence.Context;
 using Glossary.Persistence.IRepositories;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -120,6 +121,10 @@ namespace Glossary.Persistence.Repositories
             try
             {
                 var entity = await _dbSet.FindAsync(id);
+                if(entity == null)
+                {
+                    throw new NotFoundException();
+                }
                 return entity;
             }
             catch (Exception e)

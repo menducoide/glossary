@@ -3,33 +3,42 @@
     {{ termId && termId != 0 ? "Update Term" : "Create new Term" }}
   </h1>
   <div mat-dialog-content>
-    <app-form-field
-      [label]="'Term'"
-      [placeholder]="'Term'"
-      [formControlName]="'name'"
-      [formGroup]="formGroup"
-      [required]="'true'"
-      [invalidMessage]="errors?.name"
-      (handleOnChange)="handleOnChange($event)"
-    ></app-form-field>
-    <app-form-field
-      [label]="'Definition'"
-      [placeholder]="'Definition'"
-      [formControlName]="'definition'"
-      [formGroup]="formGroup"
-      [required]="'true'"
-      [invalidMessage]="errors?.definition"
-      (handleOnChange)="handleOnChange($event)"
-    ></app-form-field>
-
-    <div class="row pb-3">
-      <div class="col">
-        <button class="mr-3" mat-raised-button color="primary" (click)="onSave()">
-          <mat-icon class="mr-2">done</mat-icon>
-          Save
-        </button>
-        <button mat-raised-button (click)="onCancel()">Cancel</button>
+    <form *ngIf="formGroup" [formGroup]="formGroup" novalidate>
+      <app-form-field
+        [label]="'Term'"
+        [placeholder]="'Term'"
+        [formControlName]="'name'"
+        [formGroup]="formGroup"
+        [required]="'true'"
+        [invalidMessage]="errors?.name"
+        (handleOnChange)="handleOnChange($event)"
+      ></app-form-field>
+      <app-form-field
+        [label]="'Definition'"
+        [placeholder]="'Definition'"
+        [formControlName]="'definition'"
+        [formGroup]="formGroup"
+        [required]="'true'"
+        [invalidMessage]="errors?.definition"
+        (handleOnChange)="handleOnChange($event)"
+      ></app-form-field>
+      <div class="row pb-3">
+        <div class="col">
+          <button
+            class="mr-3"
+            mat-raised-button
+            color="primary"
+            (click)="onSave()"
+          >
+            <mat-icon class="mr-2">done</mat-icon>
+            Save
+          </button>
+          <button mat-raised-button (click)="onCancel()">
+            <mat-icon class="mr-2">clear</mat-icon>
+            Cancel
+          </button>
+        </div>
       </div>
-    </div>
+    </form>
   </div>
 </div>

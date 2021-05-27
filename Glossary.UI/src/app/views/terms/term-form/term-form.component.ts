@@ -14,8 +14,7 @@ export class TermFormComponent implements OnInit {
   errors: any = {};
   @Input() termId: number | null = null;
   constructor(
-    public dialogRef: MatDialogRef<TermFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    public dialogRef: MatDialogRef<TermFormComponent>,   
     private fb: FormBuilder,
     private termService: TermService,
     private termValidator: TermValidator

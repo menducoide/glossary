@@ -7,17 +7,19 @@
 	<span flex></span>  
 </mat-toolbar>
 <mat-drawer-container class="layout-container" [hasBackdrop]="true">
-  <mat-drawer class="layout-sidenav" #drawer [mode]="'side'">
+  <mat-drawer class="layout-sidenav pl-0" #drawer [mode]="'side'">
     <mat-list>
       <mat-list-item
         *ngFor="let menuItem of menuItems"
         [routerLink]="[menuItem.url]"
         [routerLinkActive]="['text-accent']"
         (click)="drawer.toggle()"
-        class="cursor-pointer"
+        class="cursor-pointer text-primary pl-0 ml-0"
       >
-      <div class="menu-item" mat-line>{{ menuItem.label }}</div>
-      <mat-icon  >{{menuItem.icon}}</mat-icon>
+       
+        <mat-icon mat-list-icon>{{menuItem.icon}}</mat-icon>
+        <div class="menu-item ml-3" mat-line>{{ menuItem.label }}</div>
+      
       </mat-list-item>
     </mat-list>
   </mat-drawer>
